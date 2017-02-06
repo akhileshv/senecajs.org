@@ -219,6 +219,9 @@ seneca.add({role: 'math', cmd: 'sum'}, function (msg, respond) {
 
 
 seneca.act({role: 'math', cmd: 'sum', left: 1.5, right: 2.5}, console.log)
+
+// BUT this matches role:math,cmd:sum,integer:true
+// because it's more specific - more properties match
 seneca.act({role: 'math', cmd: 'sum', left: 1.5, right: 2.5, integer: true}, console.log)
 
 seneca.add({role: 'math', cmd: 'sum', integer: true}, function (msg, respond) {
@@ -239,7 +242,7 @@ And the output it generates is:
 ``` js
 2016  ...  INFO  hello  ...
 null { answer: 4 }
-null { answer: 4 }
+null { answer: 3 }
 null { answer: 4 }
 null { answer: 3 }
 ```
